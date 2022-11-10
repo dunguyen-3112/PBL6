@@ -1,8 +1,8 @@
-keras==2.10.0
-matplotlib==3.5.3
-numpy==1.22.3
-opencv-python==4.6.0.66
-pandas==1.4.1
-scikit-learn==1.1.2
-streamlit==0.62.0
-tqdm==4.64.1
+keras
+matplotlib
+numpy
+opencv-python
+pandas
+scikit-learn
+streamlit
+tqdm

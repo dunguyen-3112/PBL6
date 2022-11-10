@@ -20,6 +20,7 @@ with open(os.path.join(PICKLE_DIR, "labels_list.pkl"), "rb") as handle:
 def path_to_tensor(img_path):
     file_bytes = np.asarray(bytearray(img_path.read()), dtype=np.uint8)
     img = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
+
     x = cv2.resize(img, (128, 128))
     return np.expand_dims(x, axis=0)
 
@@ -29,7 +30,7 @@ def return_prediction(filename):
     filename.save(buffer, 'jpeg')
     buffer.seek(0)
     filename = buffer
-    test_tensors = path_to_tensor(filename).astype('float32')/255 - 0.5
+    test_tensors = path_to_tensor(filename).astype('float32') / 255
 
     ypred_test = model.predict(test_tensors, verbose=1)
     ypred_class = np.argmax(ypred_test, axis=1)

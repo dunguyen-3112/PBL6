@@ -1,7 +1,6 @@
 keras
 matplotlib
 numpy
-opencv-python
 scikit-learn
 streamlit
 tqdm

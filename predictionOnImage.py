@@ -3,9 +3,7 @@ import json
 from keras.models import load_model
 import pickle
 import numpy as np
-from keras.preprocessing import image
-from tqdm.notebook import tqdm
-from tensorflow.keras.utils import load_img, img_to_array
+import cv2
 import io
 
 
@@ -20,13 +18,10 @@ with open(os.path.join(PICKLE_DIR, "labels_list.pkl"), "rb") as handle:
 
 
 def path_to_tensor(img_path):
-    img = load_img(img_path, target_size=(128, 128))
-    x = img_to_array(img)
+    file_bytes = np.asarray(bytearray(img_path.read()), dtype=np.uint8)
+    img = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
+    x = cv2.resize(img, (128, 128))
     return np.expand_dims(x, axis=0)
-
-# def paths_to_tensor(img_paths):
-    # list_of_tensors = [path_to_tensor(img_path) for img_path in tqdm(img_paths)]
-    # return np.vstack(list_of_tensors)
 
 
 def return_prediction(filename):
